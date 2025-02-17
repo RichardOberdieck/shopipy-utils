@@ -1,3 +1,4 @@
+from time import sleep
 import requests
 
 from shopipy_utils.constants import BASE_URL
@@ -12,3 +13,6 @@ for product in products:
         response = requests.put(
             f"{BASE_URL}/variants/{id}.json", json={"variant": {"id": id, "sku": id}}, headers=get_header_for_shopify()
         )
+        sleep(1)
+        if response.status_code != 200:
+            print(f'Problem with {product['id']}')

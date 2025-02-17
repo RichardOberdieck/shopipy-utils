@@ -60,6 +60,9 @@ experiment = [
 [tool.hatch.envs.default]
 installer = "uv"
 
+[tool.hatch.envs.default.scripts]
+update_sku = "python -m update_skus"
+
 [tool.hatch.envs.test]
 dependencies = ["shopipy_utils[test]"]
 
