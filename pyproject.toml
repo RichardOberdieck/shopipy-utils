@@ -1,0 +1,106 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "shopipy_utils"
+description = 'Project to show how to test mathematical optimizaton code'
+readme = "README.md"
+requires-python = ">=3.11"
+license = "MIT"
+keywords = []
+authors = [
+  { name = "Richard Oberdieck", email = "r.oberdieck@gmail.com"}
+]
+classifiers = [
+  "Programming Language :: Python",
+  "Programming Language :: Python :: 3.11",
+  "Programming Language :: Python :: 3.12",
+  "Programming Language :: Python :: 3.13",
+  "Programming Language :: Python :: Implementation :: CPython",
+  "Programming Language :: Python :: Implementation :: PyPy",
+]
+dependencies = [
+    "requests"
+]
+dynamic = ["version"]
+
+[project.urls]
+Documentation = "https://github.com/RichardOberdieck/shopipy_utils/blob/main/README.md"
+Issues = "https://github.com/RichardOberdieck/shopipy_utils/issues"
+Source = "https://github.com/RichardOberdieck/shopipy_utils"
+
+[tool.hatch.metadata]
+allow-direct-references = true
+
+[tool.hatch.version]
+path = "shopipy_utils/__init__.py"
+
+[tool.hatch.build]
+include = [       
+   "shopipy_utils/*.py",
+]
+
+[project.optional-dependencies]
+test = [
+  "pytest",
+  "pytest-cov",
+  "pre-commit",
+]
+docs = [
+  "mkdocs", 
+  "mkdocs-material",
+  "mkdocstrings[python]",
+  "mkdocs-plotly-plugin"
+]
+experiment = [
+    "jupyter"
+]
+
+[tool.hatch.envs.default]
+installer = "uv"
+
+[tool.hatch.envs.test]
+dependencies = ["shopipy_utils[test]"]
+
+[tool.hatch.envs.test.scripts]
+base = "pytest {args}"
+code_check = "pre-commit run --all-files"
+
+[[tool.hatch.envs.test.matrix]]
+python = ["3.11", "3.12", "3.13"]
+
+[tool.hatch.envs.experiment]
+dependencies = ["shopipy_utils[experiment]"]
+
+[tool.hatch.envs.experiment.scripts]
+run = "jupyter notebook"
+
+[tool.coverage.run]
+branch = true
+parallel = true
+omit = [
+  "shopipy_utils/__init__.py",
+  "tests/__init__.py",
+]
+
+[tool.coverage.report]
+exclude_lines = [
+  "no cov",
+  "if __name__ == .__main__.:",
+  "if TYPE_CHECKING:",
+]
+fail_under = 90
+
+[tool.hatch.envs.docs]
+dependencies = ["shopipy_utils[docs]"]
+
+[tool.hatch.envs.docs.scripts]
+build = "mkdocs build --clean"
+serve = "mkdocs serve --dev-addr localhost:8000"
+deploy = "mkdocs gh-deploy --force"
+
+[tool.ruff]
+line-length = 120
+indent-width = 4
+target-version = "py312"
