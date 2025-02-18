@@ -13,16 +13,17 @@ def update_skus():
     failed_counter = 0
     for product in products:
         for variant in product["variants"]:
-            id = variant["id"]
+            variant_id = variant["id"]
             response = requests.put(
-                f"{BASE_URL}/variants/{id}.json",
-                json={"variant": {"id": id, "sku": id}},
+                f"{BASE_URL}/variants/{variant_id}.json",
+                json={"variant": {"id": variant_id, "sku": variant_id}},
                 headers=get_header_for_shopify(),
             )
             sleep(1)
             if response.status_code != 200:
                 failed_counter += 1
-                print(f'Problem with {product['id']}')
+                product_id = product["id"]
+                print(f"Problem with {product_id}: {variant_id}")
 
     if failed_counter > 0:
         raise ValueError(f"There were {failed_counter} issues")
