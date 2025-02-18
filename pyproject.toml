@@ -21,7 +21,8 @@ classifiers = [
   "Programming Language :: Python :: Implementation :: PyPy",
 ]
 dependencies = [
-    "requests"
+    "requests",
+    "click"
 ]
 dynamic = ["version"]
 
@@ -61,7 +62,7 @@ experiment = [
 installer = "uv"
 
 [tool.hatch.envs.default.scripts]
-update_sku = "python -m update_skus"
+update_skus = "python -m scripts.update_skus"
 
 [tool.hatch.envs.test]
 dependencies = ["shopipy_utils[test]"]

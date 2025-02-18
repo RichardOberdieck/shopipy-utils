@@ -1,4 +1,4 @@
-name: Get new ratings
+name: Update SKUs
 on: 
     push:
       branches:
