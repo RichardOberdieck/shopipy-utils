@@ -19,11 +19,11 @@ def update_skus():
                 json={"variant": {"id": variant_id, "sku": variant_id}},
                 headers=get_header_for_shopify(),
             )
-            sleep(1)
+            sleep(1.1)
             if response.status_code != 200:
                 failed_counter += 1
                 product_id = product["id"]
-                print(f"Problem with {product_id}: {variant_id}")
+                print(f"Problem with {product_id}: {variant_id}. Got {response.status_code}: {response.text}")
 
     if failed_counter > 0:
         raise ValueError(f"There were {failed_counter} issues")
