@@ -9,6 +9,8 @@ on:
 permissions:
   contents: read
 
+env:
+  SHOPIFY_ACCESS_TOKEN: ${{ secrets.SHOPIFY_ACCESS_TOKEN }}
 
 jobs:
   test:
