@@ -31,4 +31,3 @@ def update_skus():
 
 if __name__ == "__main__":
     update_skus()
-    print("This is fun")
