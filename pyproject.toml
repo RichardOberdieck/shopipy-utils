@@ -4,7 +4,6 @@ build-backend = "hatchling.build"
 
 [project]
 name = "shopipy_utils"
-description = 'Project to show how to test mathematical optimizaton code'
 readme = "README.md"
 requires-python = ">=3.11"
 license = "MIT"
@@ -22,7 +21,8 @@ classifiers = [
 ]
 dependencies = [
     "requests",
-    "click"
+    "click",
+    "pandas"
 ]
 dynamic = ["version"]
 
@@ -63,6 +63,7 @@ installer = "uv"
 
 [tool.hatch.envs.default.scripts]
 update_skus = "python -m scripts.update_skus"
+update_ratings = "python -m scripts.update_ratings"
 
 [tool.hatch.envs.test]
 dependencies = ["shopipy_utils[test]"]
