@@ -22,7 +22,9 @@ classifiers = [
 dependencies = [
     "requests",
     "click",
-    "pandas"
+    "pandas",
+    "pydantic",
+    "bs4"
 ]
 dynamic = ["version"]
 
