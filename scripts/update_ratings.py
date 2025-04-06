@@ -16,6 +16,8 @@ def update_ratings():
         if "untappd_" not in product["tags"]:
             continue
         rating = get_untappd_rating(product["tags"])
+        if rating.rating < 1 or rating.rating > 5 or rating.rating_count < 1:
+            continue
         update_rating_in_shopify(product["id"], rating)
 
         sleep(1)  # For rate-limit purposes
