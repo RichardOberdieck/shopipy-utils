@@ -1,5 +1,4 @@
 from time import sleep
-import click
 import requests
 from bs4 import BeautifulSoup
 
@@ -8,12 +7,11 @@ from shopipy_utils.products import Rating, get_products_from_shopify
 from shopipy_utils.utils import send_post_request, send_put_request
 
 
-@click.command()
 def update_ratings():
     products = get_products_from_shopify()
 
     for product in products:
-        if "untappd_" not in product["tags"]:
+        if "untappd" not in product["tags"]:
             continue
         rating = get_untappd_rating(product["tags"])
         if rating.rating < 1 or rating.rating > 5 or rating.rating_count < 1:
@@ -32,8 +30,7 @@ def get_untappd_rating(tags: str) -> Rating:
 
 def get_untappd_url_from_tag(tags: str) -> str:
     list_of_tags = tags.split(", ")
-    component = [tag for tag in list_of_tags if "untappd_" in tag][0].strip("untappd_")
-    return f"https://untappd.com/b/{component}"
+    return [tag for tag in list_of_tags if "untappd" in tag][0]
 
 
 def get_beer_specific_tag(url):
