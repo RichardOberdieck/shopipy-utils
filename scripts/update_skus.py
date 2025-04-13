@@ -25,9 +25,6 @@ def update_skus():
                 product_id = product["id"]
                 print(f"Problem with {product_id}: {variant_id}. Got {response.status_code}: {response.text}")
 
-    if failed_counter > 0:
-        raise ValueError(f"There were {failed_counter} issues")
-
 
 if __name__ == "__main__":
     update_skus()
