@@ -13,7 +13,11 @@ def update_ratings():
     for product in products:
         if "untappd" not in product["tags"]:
             continue
-        rating = get_untappd_rating(product["tags"])
+        try:
+            rating = get_untappd_rating(product["tags"])
+        except Exception as e:
+            print(f"For product {product} got {e}")
+            continue
         if rating.rating < 1 or rating.rating > 5 or rating.rating_count < 1:
             continue
         update_rating_in_shopify(product["id"], rating)
