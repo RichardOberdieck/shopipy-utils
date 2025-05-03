@@ -8,10 +8,10 @@ def get_header_for_shopify():
 
 
 def send_post_request(url: str, data: dict) -> None:
-    response = requests.post(url, headers=get_header_for_shopify(), json=data)
+    response = requests.post(url, headers=get_header_for_shopify(), json=data, verify=False)
     if response.status_code != 201:
         raise ValueError(f"Status code {response.status_code} not 201")
 
 
 def send_put_request(url: str, data: dict) -> None:
-    requests.put(url, headers=get_header_for_shopify(), json=data)
+    requests.put(url, headers=get_header_for_shopify(), json=data, verify=False)
