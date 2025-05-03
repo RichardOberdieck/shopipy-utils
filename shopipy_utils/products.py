@@ -15,7 +15,7 @@ def get_products_from_shopify() -> dict:
     products_remaining = True
     last_id = 0
     while products_remaining:
-        response = requests.get(get_all_products_url(last_id), headers=get_header_for_shopify())
+        response = requests.get(get_all_products_url(last_id), headers=get_header_for_shopify(), verify=False)
         sleep(1)
         current_products = response.json()["products"]
         if len(current_products) == 0:
