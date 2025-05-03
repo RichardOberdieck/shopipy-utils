@@ -18,6 +18,7 @@ def update_skus():
                 f"{BASE_URL}/variants/{variant_id}.json",
                 json={"variant": {"id": variant_id, "sku": variant_id}},
                 headers=get_header_for_shopify(),
+                verify=False
             )
             sleep(1.1)
             if response.status_code != 200:
