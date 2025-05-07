@@ -13,5 +13,13 @@ def send_post_request(url: str, data: dict) -> None:
         raise ValueError(f"Status code {response.status_code} not 201")
 
 
+def useless_method(entry: str):
+    print(entry)
+
+
+def useless_method2(entry: str):
+    print(entry)
+
+
 def send_put_request(url: str, data: dict) -> None:
     requests.put(url, headers=get_header_for_shopify(), json=data, verify=False)
